@@ -2,7 +2,8 @@ const assert = require("assert");
 const ganache = require("ganache-cli");
 const Web3 = require("web3");
 const web3 = new Web3(ganache.provider());
-const {abi, evm} = require("../ethereum/compile");
+
+const compiledBoard = require("../ethereum/build/BulletinBoard.json");
 
 let board;
 let accounts;
@@ -10,8 +11,8 @@ let accounts;
 beforeEach(async () => {
 	accounts = await web3.eth.getAccounts();
 
-	board = await new web3.eth.Contract(abi)
-		.deploy({data: evm.bytecode.object})
+	board = await new web3.eth.Contract(compiledBoard.abi)
+		.deploy({data: compiledBoard.evm.bytecode.object})
 		.send({from: accounts[0], gas: "1000000"});
 
 	await board.methods.addMessage("Hi There").send({from: accounts[0]});
