@@ -17,7 +17,7 @@ const Home = ({messages}) => {
 
 	return (
 		<div>
-			<h1>Home Page</h1>
+			<h1>Bulletin Board</h1>
 			<input
 				type={"text"}
 				value={newMessage}
