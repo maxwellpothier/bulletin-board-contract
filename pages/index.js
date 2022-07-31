@@ -4,10 +4,9 @@ import web3 from "../ethereum/web3";
 
 const Home = ({messages}) => {
 	const [newMessage, setNewMessage] = useState("");
+	const [editIsOpen, setEditIsOpen] = useState(false);
 
 	const addMessageToBlockchain = async () => {
-		console.log(newMessage);
-
 		const accounts = await web3.eth.getAccounts();
 
 		await boardInstance.methods.addMessage(newMessage).send({
@@ -17,9 +16,16 @@ const Home = ({messages}) => {
 
 	const deleteMessageFromBlockchain = async (index) => {
 		const accounts = await web3.eth.getAccounts();
-		console.log(accounts);
 
 		await boardInstance.methods.deleteMessage(index).send({
+			from: accounts[0],
+		});
+	};
+
+	const editMessageOnBlockchain = async () => {
+		const accounts = await web3.eth.getAccounts();
+
+		await boardInstance.methods.editMessage(index, newMessage).send({
 			from: accounts[0],
 		});
 	};
@@ -39,7 +45,19 @@ const Home = ({messages}) => {
 					<h3>{message[0]}</h3>
 					<p>{message[1]}</p>
 					<p onClick={() => deleteMessageFromBlockchain(i)}>Delete</p>
-					<p>Edit</p>
+					{editIsOpen
+						?	<div>
+								<input
+									type={"text"}
+									value={newMessage}
+									onChange={(e) => setNewMessage(e.target.value)}
+								/>
+								<button onClick={addMessageToBlockchain}>Add a message</button>
+							</div>
+						: <p onClick={() => setEditIsOpen(true)}>Edit</p>
+					}
+
+					<p onClick={() => editMessageOnBlockchain(i)}>Edit</p>
 				</div>
 			))}
 		</div>
