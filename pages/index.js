@@ -1,36 +1,16 @@
 import { useState } from "react";
 import boardInstance from "../ethereum/bulletinBoard";
-import web3 from "../ethereum/web3";
+import {
+	addMessageToBlockchain,
+	deleteMessageFromBlockchain,
+	editMessageOnBlockchain,
+} from "../utils/translationUtils";
 
 const Home = ({messages}) => {
 	const [newMessage, setNewMessage] = useState("");
 	const [editedMessage, setEditedMessage] = useState("");
 	const [editIsOpen, setEditIsOpen] = useState(false);
 	const [selectedKey, setSelectedKey] = useState();
-
-	const addMessageToBlockchain = async () => {
-		const accounts = await web3.eth.getAccounts();
-
-		await boardInstance.methods.addMessage(newMessage).send({
-			from: accounts[0],
-		});
-	};
-
-	const deleteMessageFromBlockchain = async (index) => {
-		const accounts = await web3.eth.getAccounts();
-
-		await boardInstance.methods.deleteMessage(index).send({
-			from: accounts[0],
-		});
-	};
-
-	const editMessageOnBlockchain = async (index) => {
-		const accounts = await web3.eth.getAccounts();
-
-		await boardInstance.methods.editMessage(index, editedMessage).send({
-			from: accounts[0],
-		});
-	};
 
 	return (
 		<div>
@@ -40,7 +20,7 @@ const Home = ({messages}) => {
 				value={newMessage}
 				onChange={(e) => setNewMessage(e.target.value)}
 			/>
-			<button onClick={addMessageToBlockchain}>Add a message</button>
+			<button onClick={() => addMessageToBlockchain(newMessage)}>Add a message</button>
 
 			{messages.map((message, i) => (
 				<div key={i}>
