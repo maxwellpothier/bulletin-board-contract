@@ -15,6 +15,15 @@ const Home = ({messages}) => {
 		});
 	};
 
+	const deleteMessageFromBlockchain = async (index) => {
+		const accounts = await web3.eth.getAccounts();
+		console.log(accounts);
+
+		await boardInstance.methods.deleteMessage(index).send({
+			from: accounts[0],
+		});
+	};
+
 	return (
 		<div>
 			<h1>Bulletin Board</h1>
@@ -29,6 +38,8 @@ const Home = ({messages}) => {
 				<div key={i}>
 					<h3>{message[0]}</h3>
 					<p>{message[1]}</p>
+					<p onClick={() => deleteMessageFromBlockchain(i)}>Delete</p>
+					<p>Edit</p>
 				</div>
 			))}
 		</div>
