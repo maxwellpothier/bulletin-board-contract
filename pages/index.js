@@ -1,16 +1,10 @@
 import { useState } from "react";
 import boardInstance from "../ethereum/bulletinBoard";
-import {
-	addMessageToBlockchain,
-	deleteMessageFromBlockchain,
-	editMessageOnBlockchain,
-} from "../utils/translationUtils";
+import {addMessageToBlockchain} from "../utils/translationUtils";
+import MessageCard from "../components/MessageCard";
 
 const Home = ({messages}) => {
 	const [newMessage, setNewMessage] = useState("");
-	const [editedMessage, setEditedMessage] = useState("");
-	const [editIsOpen, setEditIsOpen] = useState(false);
-	const [selectedKey, setSelectedKey] = useState();
 
 	return (
 		<div>
@@ -23,26 +17,12 @@ const Home = ({messages}) => {
 			<button onClick={() => addMessageToBlockchain(newMessage)}>Add a message</button>
 
 			{messages.map((message, i) => (
-				<div key={i}>
-					<h3>{message[0]}</h3>
-					<p>{message[1]}</p>
-					<p onClick={() => deleteMessageFromBlockchain(i)}>Delete</p>
-					{editIsOpen && i === selectedKey
-						?	<div>
-								<input
-									type={"text"}
-									value={editedMessage}
-									onChange={(e) => setEditedMessage(e.target.value)}
-								/>
-								<button onClick={() => editMessageOnBlockchain(i, editedMessage)}>Edit Message</button>
-								<p onClick={() => setEditIsOpen(false)}>x</p>
-							</div>
-						: <p onClick={() => {
-							setEditIsOpen(true);
-							setSelectedKey(i);
-						}}>Edit</p>
-					}
-				</div>
+				<MessageCard
+					key={i}
+					index={i}
+					message={message[0]}
+					author={message[1]}
+				/>
 			))}
 		</div>
 
