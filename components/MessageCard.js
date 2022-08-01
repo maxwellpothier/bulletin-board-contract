@@ -1,3 +1,5 @@
+import styles from "./messageCard.module.scss";
+
 import { useState } from "react";
 import {
 	deleteMessageFromBlockchain,
@@ -10,24 +12,36 @@ const MessageCard = ({index, message, author}) => {
 	const [selectedKey, setSelectedKey] = useState();
 
 	return (
-		<div>
+		<div className={styles.messageWrapper}>
 		<h3>{message}</h3>
 		<p>{author}</p>
 		<p onClick={() => deleteMessageFromBlockchain(index)}>Delete</p>
 		{editIsOpen && index === selectedKey
-			?	<div>
-					<input
-						type={"text"}
-						value={editedMessage}
-						onChange={(e) => setEditedMessage(e.target.value)}
-					/>
-					<button onClick={() => editMessageOnBlockchain(index, editedMessage)}>Edit Message</button>
-					<p onClick={() => setEditIsOpen(false)}>x</p>
-				</div>
-			: <p onClick={() => {
-				setEditIsOpen(true);
-				setSelectedKey(index);
-			}}>Edit</p>
+			? <div className={styles.editInputContainer}>
+				<input
+					className={styles.editInput}
+					type={"text"}
+					value={editedMessage}
+					onChange={(e) => setEditedMessage(e.target.value)}
+				/>
+				<button
+					className={styles.editSubmitButton}
+					onClick={() => editMessageOnBlockchain(index, editedMessage)}
+				>
+					Edit Message
+				</button>
+
+				<p onClick={() => setEditIsOpen(false)}>x</p>
+			</div>
+			: <p
+				className={styles.pointCursor}
+				onClick={() => {
+					setEditIsOpen(true);
+					setSelectedKey(index);
+				}}
+			>
+				Edit
+			</p>
 		}
 	</div>
 	);

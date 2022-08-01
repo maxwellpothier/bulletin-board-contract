@@ -1,7 +1,7 @@
 import { useState } from "react";
 import boardInstance from "../ethereum/bulletinBoard";
-import {addMessageToBlockchain} from "../utils/translationUtils";
 import MessageCard from "../components/MessageCard";
+import NewMessageInput from "../components/NewMessageInput";
 
 const Home = ({messages}) => {
 	const [newMessage, setNewMessage] = useState("");
@@ -9,12 +9,8 @@ const Home = ({messages}) => {
 	return (
 		<div>
 			<h1>Bulletin Board</h1>
-			<input
-				type={"text"}
-				value={newMessage}
-				onChange={(e) => setNewMessage(e.target.value)}
-			/>
-			<button onClick={() => addMessageToBlockchain(newMessage)}>Add a message</button>
+
+			<NewMessageInput/>
 
 			{messages.map((message, i) => (
 				<MessageCard

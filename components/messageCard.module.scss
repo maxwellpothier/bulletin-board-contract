@@ -1,0 +1,27 @@
+.messageWrapper {
+	border: 1px solid gray;
+	border-radius: 10px;
+	max-width: 400px;
+	padding: 1px 30px;
+	margin-bottom: 25px;
+}
+
+.editInputContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 15px;
+}
+
+.editInput {
+	height: 20px;
+	width: 200px;
+}
+
+.editSubmitButton {
+	height: 25px;
+}
+
+.pointCursor {
+	cursor: pointer;
+}
