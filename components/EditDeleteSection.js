@@ -1,7 +1,10 @@
+import styles from "./editDeleteMessage.module.scss";
+
 const EditDeleteSection = () => {
 	return (
-		<div>
-			Edit Delete
+		<div className={styles.editDeleteContainer}>
+			<div>Edit</div>
+			<div>Delete</div>
 		</div>
 	);
 };

@@ -3,6 +3,7 @@ import {
 	deleteMessageFromBlockchain,
 	editMessageOnBlockchain,
 } from "../utils/translationUtils";
+import EditDeleteSection from "./EditDeleteSection";
 
 import styles from "./messageCard.module.scss";
 
@@ -15,7 +16,8 @@ const MessageCard = ({index, message, author}) => {
 		<div className={styles.messageWrapper}>
 		<h3>{message}</h3>
 		<p>- {author}</p>
-		<p
+		<EditDeleteSection/>
+		{/* <p
 			className={styles.pointCursor}
 			onClick={async () => {
 				await deleteMessageFromBlockchain(index);
@@ -56,7 +58,7 @@ const MessageCard = ({index, message, author}) => {
 			>
 				Edit
 			</p>
-		}
+		} */}
 	</div>
 	);
 };
