@@ -14,10 +14,12 @@ const MessageCard = ({index, message, author}) => {
 	return (
 		<div className={styles.messageWrapper}>
 		<h3>{message}</h3>
-		<p>{author}</p>
+		<p>- {author}</p>
 		<p
 			className={styles.pointCursor}
-			onClick={() => deleteMessageFromBlockchain(index)}
+			onClick={async () => {
+				await deleteMessageFromBlockchain(index);
+			}}
 		>
 			Delete
 		</p>
@@ -31,7 +33,9 @@ const MessageCard = ({index, message, author}) => {
 				/>
 				<button
 					className={styles.editSubmitButton}
-					onClick={() => editMessageOnBlockchain(index, editedMessage)}
+					onClick={async () => {
+						await editMessageOnBlockchain(index, editedMessage);
+					}}
 				>
 					Edit Message
 				</button>

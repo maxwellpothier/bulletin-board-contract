@@ -14,8 +14,8 @@ const NewMessageInput = () => {
 				value={newMessage}
 				onChange={(e) => setNewMessage(e.target.value)}
 			/>
-			<button onClick={() => {
-				addMessageToBlockchain(newMessage);
+			<button onClick={async () => {
+				await addMessageToBlockchain(newMessage);
 			}}>Add a message</button>
 		</div>
 	);
