@@ -9,11 +9,14 @@ const NewMessageInput = () => {
 	return (
 		<div className={styles.newMessageInputContainer}>
 			<input
+				className={styles.newMessageInput}
 				type={"text"}
 				value={newMessage}
 				onChange={(e) => setNewMessage(e.target.value)}
 			/>
-			<button onClick={() => addMessageToBlockchain(newMessage)}>Add a message</button>
+			<button onClick={() => {
+				addMessageToBlockchain(newMessage);
+			}}>Add a message</button>
 		</div>
 	);
 };
