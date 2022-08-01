@@ -1,10 +1,10 @@
-import styles from "./messageCard.module.scss";
-
 import { useState } from "react";
 import {
 	deleteMessageFromBlockchain,
 	editMessageOnBlockchain,
 } from "../utils/translationUtils";
+
+import styles from "./messageCard.module.scss";
 
 const MessageCard = ({index, message, author}) => {
 	const [editedMessage, setEditedMessage] = useState("");

@@ -9,6 +9,7 @@ const Home = ({messages}) => {
 	return (
 		<div>
 			<h1>Bulletin Board</h1>
+			<p>Etherscan</p>
 
 			<NewMessageInput/>
 
