@@ -15,7 +15,12 @@ const MessageCard = ({index, message, author}) => {
 		<div className={styles.messageWrapper}>
 		<h3>{message}</h3>
 		<p>{author}</p>
-		<p onClick={() => deleteMessageFromBlockchain(index)}>Delete</p>
+		<p
+			className={styles.pointCursor}
+			onClick={() => deleteMessageFromBlockchain(index)}
+		>
+			Delete
+		</p>
 		{editIsOpen && index === selectedKey
 			? <div className={styles.editInputContainer}>
 				<input
@@ -31,7 +36,12 @@ const MessageCard = ({index, message, author}) => {
 					Edit Message
 				</button>
 
-				<p onClick={() => setEditIsOpen(false)}>x</p>
+				<p
+					className={styles.pointCursor}
+					onClick={() => setEditIsOpen(false)}
+				>
+					x
+				</p>
 			</div>
 			: <p
 				className={styles.pointCursor}

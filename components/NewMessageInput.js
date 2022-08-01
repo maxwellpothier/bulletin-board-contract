@@ -1,11 +1,13 @@
 import { useState } from "react";
 import {addMessageToBlockchain} from "../utils/translationUtils";
 
+import styles from "./newMessageInput.module.scss";
+
 const NewMessageInput = () => {
 	const [newMessage, setNewMessage] = useState("");
 
 	return (
-		<div>
+		<div className={styles.newMessageInputContainer}>
 			<input
 				type={"text"}
 				value={newMessage}
