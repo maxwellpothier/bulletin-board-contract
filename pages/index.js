@@ -16,7 +16,14 @@ const Home = ({messages}) => {
 				/>
 			</Head>
 			<h1>Bulletin Board</h1>
-			<p>Etherscan</p>
+			<div className={styles.etherscanLink}>
+				<a
+					href={"https://rinkeby.etherscan.io/address/0x5c0a1fffe8aCc0DB69b04D21E0f694fe8bCa0b47"}
+					target={"_blank"}
+				>
+					Etherscan
+				</a>
+			</div>
 
 			<NewMessageInput/>
 
