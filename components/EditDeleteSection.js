@@ -4,7 +4,7 @@ import { deleteMessageFromBlockchain, editMessageOnBlockchain } from "../utils/t
 
 import styles from "./editDeleteMessage.module.scss";
 
-const EditDeleteSection = ({index}) => {
+const EditDeleteSection = ({index, setIsLoading}) => {
 	const [editIsOpen, setEditIsOpen] = useState(false);
 	const [editedMessage, setEditedMessage] = useState("");
 
@@ -20,7 +20,9 @@ const EditDeleteSection = ({index}) => {
 					className={styles.deleteIcon}
 					name={"trash alternate icon"}
 					onClick={async () => {
+						setIsLoading(true);
 						await deleteMessageFromBlockchain(index);
+						setIsLoading(false);
 					}}
 				/>
 			</div>
@@ -35,7 +37,9 @@ const EditDeleteSection = ({index}) => {
 					<button
 						className={styles.editSubmitButton}
 						onClick={async () => {
+							setIsLoading(true);
 							await editMessageOnBlockchain(index, editedMessage);
+							setIsLoading(false);
 						}}
 					>
 						Edit Message

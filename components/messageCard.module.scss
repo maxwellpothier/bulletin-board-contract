@@ -1,4 +1,11 @@
-.messageWrapper {
+.cardWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 15px;
+}
+
+.messageContainer {
 	border: 1px solid gray;
 	border-radius: 10px;
 	max-width: 400px;

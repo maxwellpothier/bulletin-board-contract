@@ -5,6 +5,7 @@ import styles from "./newMessageInput.module.scss";
 
 const NewMessageInput = () => {
 	const [newMessage, setNewMessage] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	return (
 		<div className={styles.newMessageInputContainer}>
@@ -15,8 +16,11 @@ const NewMessageInput = () => {
 				onChange={(e) => setNewMessage(e.target.value)}
 			/>
 			<button onClick={async () => {
+				setIsLoading(true);
 				await addMessageToBlockchain(newMessage);
+				setIsLoading(false);
 			}}>Add a message</button>
+			<div class={`ui ${isLoading ? "active" : ""} inline loader`}></div>
 		</div>
 	);
 };
