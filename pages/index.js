@@ -2,10 +2,14 @@ import boardInstance from "../ethereum/bulletinBoard";
 import MessageCard from "../components/MessageCard";
 import NewMessageInput from "../components/NewMessageInput";
 import Head from "next/head";
+import { Message } from "semantic-ui-react";
 
 import styles from "./index.module.scss";
+import { useState } from "react";
 
 const Home = ({messages}) => {
+	const [errorMessage, setErrorMessage] = useState("");
+
 	return (
 		<div className={styles.applicationWrapper}>
 			<Head>
@@ -28,12 +32,22 @@ const Home = ({messages}) => {
 			<NewMessageInput/>
 
 			{messages.map((message, i) => (
-				<MessageCard
-					key={i}
-					index={i}
-					message={message[0]}
-					author={message[1]}
-				/>
+				<div className={styles.messageWrapper}>
+					<MessageCard
+						key={i}
+						index={i}
+						message={message[0]}
+						author={message[1]}
+						setErrorMessage={setErrorMessage}
+					/>
+					{errorMessage &&
+						<Message
+							error
+							header={"Error processing request"}
+							content={errorMessage}
+						/>
+					}
+				</div>
 			))}
 		</div>
 

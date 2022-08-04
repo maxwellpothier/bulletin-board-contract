@@ -1,14 +1,13 @@
+.messageContainer {
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 10px 30px;
+	margin-right: 10px;
+}
+
 .cardWrapper {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap: 15px;
-}
-
-.messageContainer {
-	border: 1px solid gray;
-	border-radius: 10px;
-	max-width: 400px;
-	padding: 10px 30px;
-	margin-bottom: 25px;
 }

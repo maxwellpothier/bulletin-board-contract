@@ -15,15 +15,11 @@ export const addMessageToBlockchain = async (newMessage) => {
 };
 
 export const deleteMessageFromBlockchain = async (index) => {
-	try {
-		const accounts = await web3.eth.getAccounts();
-	
-		await boardInstance.methods.deleteMessage(index).send({
-			from: accounts[0],
-		});
-	} catch (err) {
-		console.log("This is the return: ", err);
-	}
+	const accounts = await web3.eth.getAccounts();
+
+	await boardInstance.methods.deleteMessage(index).send({
+		from: accounts[0],
+	});
 };
 
 export const editMessageOnBlockchain = async (index, editedMessage) => {

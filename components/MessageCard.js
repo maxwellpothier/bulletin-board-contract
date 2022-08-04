@@ -3,7 +3,7 @@ import EditDeleteSection from "./EditDeleteSection";
 
 import styles from "./messageCard.module.scss";
 
-const MessageCard = ({ index, message, author }) => {
+const MessageCard = ({ index, message, author, setErrorMessage }) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	return (
@@ -14,6 +14,7 @@ const MessageCard = ({ index, message, author }) => {
 				<EditDeleteSection
 					index={index}
 					setIsLoading={setIsLoading}
+					setErrorMessage={setErrorMessage}
 				/>
 			</div>
 			<div class={`ui ${isLoading ? "active" : ""} inline loader`}></div>
