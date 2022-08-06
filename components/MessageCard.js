@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EditDeleteSection from "./EditDeleteSection";
-import { Message } from "semantic-ui-react";
+import { Icon, Message } from "semantic-ui-react";
 
 import styles from "./messageCard.module.scss";
 
@@ -22,12 +22,19 @@ const MessageCard = ({ index, message, author }) => {
 				</div>
 				<div class={`ui ${isLoading ? "active" : ""} inline loader`}></div>
 			</div>
-			{errorMessage && 
-				<Message
-					error
-					header={"Error processing request"}
-					content={errorMessage}
-				/>
+			{errorMessage &&
+				<div className={styles.errorWrapper}>
+					<Message
+						error
+						header={"Error processing request"}
+						content={errorMessage}
+					/>
+					<Icon
+						className={styles.closeErrorIcon}
+						name="close icon"
+						onClick={() => setErrorMessage("")}
+					/>
+				</div>
 			}
 		</div>
 	);

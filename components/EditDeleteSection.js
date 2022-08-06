@@ -42,6 +42,10 @@ const EditDeleteSection = ({index, setIsLoading, setErrorMessage}) => {
 					<button
 						className={styles.editSubmitButton}
 						onClick={async () => {
+							if (editedMessage.length === 0) {
+								setErrorMessage("The message provided by the user cannot be empty");
+								return;
+							}
 							setIsLoading(true);
 							try {
 								await editMessageOnBlockchain(index, editedMessage);

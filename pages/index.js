@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import boardInstance from "../ethereum/bulletinBoard";
 import MessageCard from "../components/MessageCard";
 import NewMessageInput from "../components/NewMessageInput";
