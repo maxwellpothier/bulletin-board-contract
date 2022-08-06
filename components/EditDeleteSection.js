@@ -43,8 +43,13 @@ const EditDeleteSection = ({index, setIsLoading, setErrorMessage}) => {
 						className={styles.editSubmitButton}
 						onClick={async () => {
 							setIsLoading(true);
-							await editMessageOnBlockchain(index, editedMessage);
-							setIsLoading(false);
+							try {
+								await editMessageOnBlockchain(index, editedMessage);
+							} catch (err) {
+								setErrorMessage(err.message);
+							} finally {
+								setIsLoading(false);
+							}
 						}}
 					>
 						Edit Message
