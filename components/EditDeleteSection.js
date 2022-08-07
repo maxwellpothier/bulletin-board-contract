@@ -23,6 +23,7 @@ const EditDeleteSection = ({index, setIsLoading, setErrorMessage}) => {
 						setIsLoading(true);
 						try {
 							await deleteMessageFromBlockchain(index);
+							window.location.reload(true);
 						} catch (err) {
 							setErrorMessage(err.message);
 						} finally {
@@ -49,6 +50,7 @@ const EditDeleteSection = ({index, setIsLoading, setErrorMessage}) => {
 							setIsLoading(true);
 							try {
 								await editMessageOnBlockchain(index, editedMessage);
+								window.location.reload(true);
 							} catch (err) {
 								setErrorMessage(err.message);
 							} finally {

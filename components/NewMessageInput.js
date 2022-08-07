@@ -26,6 +26,7 @@ const NewMessageInput = () => {
 					setIsLoading(true);
 					try {
 						await addMessageToBlockchain(newMessage);
+						window.location.reload(true);
 					} catch (err) {
 						console.log(err.message);
 						setErrorMessage(err.message);
